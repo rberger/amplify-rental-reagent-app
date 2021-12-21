@@ -1,9 +1,12 @@
 <img src="https://raw.githubusercontent.com/cljs/logo/master/cljs.svg" height="120">
 
-# Create Reagent App
+# Amplify Rental Reagent App
 
-A simple way to bootstrap a ClojureScript (CLJS) web-app using:
+Attempt to convert the AWS Tutorial [Build a Vacation Rental Site with Amplify Studio](https://welearncode.com/studio-vacation-site/) from Javascript to Clojurescript
 
+Uses
+
+- [Create Reagent App](https://github.com/AutoScreencast/create-reagent-app) to create the project scaffold
 - [Shadow-CLJS](http://shadow-cljs.org/) as the build tool / compiler
 
 - [Reagent](https://github.com/reagent-project/reagent) (CLJS wrapper around [React](https://reactjs.org/)) for building your user interface
@@ -12,29 +15,7 @@ A simple way to bootstrap a ClojureScript (CLJS) web-app using:
 
 ## Getting Started
 
-Create your app in 5 easy steps:
-
-### 1. Use npx (npm package runner)
-
-Note that [npx](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b) comes with npm 5.2+ and higher.
-
-To create a project called `my-project`, run this command in your Terminal:
-
-```
-npx create-reagent-app my-project
-```
-
-This will create a folder (in your current working directory) called `my-project`, with the bootstrapped app as its contents.
-
-### 2. Change Directory into Project Folder
-
-Assuming you called your project `my-project`:
-
-```
-cd my-project
-```
-
-### 3. Install Dependencies
+### 1. Install Dependencies
 
 Note: This step creates a `node_modules` folder with all the dependencies in your project folder. You can use either `yarn` or `npm` as your package manager.
 
@@ -44,35 +25,23 @@ npm install
 
 Note: Creates a `package-lock.json` file in your project folder.
 
-### 4. Start the App
+### 2. Start the App
+
+- First start the shadow-cljs processes to run the main clojurescript
 
 ```
 npm start
 ```
 
-### 5. Open Your Browser
+- Then start the webpack watcher to update the javascript libraries
+
+```bash
+npm run pack
+```
+
+### 3. Open Your Browser
 
 Then open http://localhost:3000/ in your browser to see your app.
-
-> Note: This approach to scaffolding an app was heavily inspired by [create-react-app](https://create-react-app.dev/), a very popular way to get started with a ReactJS app in the JavaScript community.
-
-> Note also: Unlike the setup created by _create-react-app_, your project is not automatically initialized as a Git repo. However, a `.gitignore` file is included. Please run `git init` to create a Git repo in your project folder.
-
----
-
-## Options
-
-Running the following command (without options) creates a project using a **basic template**, without example usage or comments, which is most useful when you need a blank project scaffold:
-
-```
-npx create-reagent-app my-project
-```
-
-You can add the `--example` option to the command to get a **basic template with examples**, which should be useful for developers who are not very familiar with setting up ClojureScript/Reagent projects with Shadow-CLJS. It has example components and plenty of comments:
-
-```
-npx create-reagent-app my-project --example
-```
 
 ---
 
@@ -217,4 +186,3 @@ You can run the process in the foreground in a dedicated Terminal. Use CTRL+C to
 ```
 npm run shadow-cljs-server
 ```
-
