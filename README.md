@@ -308,7 +308,7 @@ And the following to the `:devDependencies section (Use the latest versions avai
 Then do
 
 ```bash
-npm install
+npm start
 ```
 
 And in another terminal window, also at the top of the repo run:
