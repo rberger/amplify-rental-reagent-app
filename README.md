@@ -1,5 +1,3 @@
-<img src="https://raw.githubusercontent.com/cljs/logo/master/cljs.svg" height="120">
-
 # Amplify Rental Reagent App
 
 Attempt to convert the AWS Tutorial [Build a Vacation Rental Site with Amplify Studio](https://welearncode.com/studio-vacation-site/) from Javascript to Clojurescript
@@ -11,9 +9,317 @@ Uses
 
 - [Reagent](https://github.com/reagent-project/reagent) (CLJS wrapper around [React](https://reactjs.org/)) for building your user interface
 
+Follow the instructions from the original article up thru to `Pull to Studio`
+
+## Clojurescript Version
+
+### Create a git repo with shadow-cljs / reagent scaffolding
+
+We’re going to use [create-reagent-app - npm](https://www.npmjs.com/package/create-reagent-app) to create the scaffolding of a shadow-cljs / reagent / react app repo
+
+```
+npx create-reagent-app  amplify-rental-reagent-app
+cd amplify-rental-reagent-app
+npm-install
+```
+
+### Add babel for converting JSX to JS
+
+Shadow-cljs can not directly consume JSX files and the Amplify UI components from the Figma plugin are delivered as JSX files.
+This is based on info from [Shadow CLJS User’s Guide - JavaScript Dialects](https://shadow-cljs.github.io/docs/UsersGuide.html#_javascript_dialects)
+
+So we need to install the appropriate babel tool
+
+```bash
+npm i @babel/core @babel/plugin-transform-react-jsx @babel/preset-env @babel/cli --save-dev
+```
+
+Create the `.babelrc` file in `src/js/.babelrc` (You will have to create the js directory)
+
+```json
+{
+  "plugins": ["@babel/transform-react-jsx"]
+}
+```
+
+Then update any dependencies to the latest versions
+If you don’t already have it, install [npm-check-updates - npm](https://www.npmjs.com/package/npm-check-updates)
+
+```
+npm install -g npm-check-updates
+```
+
+And then run it to update any dependencies to the latest versions ignoring specified versions in the package.json.
+
+I like to start projects with the latest versions of everything. But you could just make sure `shadow-cljs` is the latest version, best to stay latest with that.
+
+If you run it without the `-u` it will just show you what it would update and you could manually update the ones you care about.
+
+```
+ncu -u
+npm install
+```
+
+### Make it into a git repo
+
+```
+git init
+git add -A
+git commit -m "Initial commit from scaffholding"
+```
+
+If you want, you could push it to your own remote Github or other repository
+
+### Add AWS Dependencies
+
+- AWS Account
+  - If you don’t already have an AWS account, you’ll need to create one in order to follow the steps outlined in this tutorial. [Create an AWS Account](https://portal.aws.amazon.com/billing/signup?redirect_url=https%3A%2F%2Faws.amazon.com%2Fregistration-confirmation#/start)
+- Amplify CLI
+  If you don’t already have the Amplify CLI installed you can install it with
+
+```
+npm install -g @aws-amplify/cli
+```
+
+- Configure Account / IAM / CLI to work with Amplify
+  If you already have an AWS account you want to use and you have things setup in your workstation / Terminal to use AWS CLI via profiles in ~/.aws/credentials, you can just set your profile in your terminal for the profile to use
+
+```
+export AWS_PROFILE=<your profile>
+```
+
+and you don’t need to do `amplify configure` .
+
+If you haven’t set such at think up, follow the instructions at [Configure the Amplify CLI](https://docs.amplify.aws/cli/start/install/#configure-the-amplify-cli)
+
+### Install the was-amplify libraries in your project
+
+Still at the top of the `amplify-rental-reagent-app` repo, install the libraries
+
+```
+npm i aws-amplify @aws-amplify/ui-react
+```
+
+You might want to commit the changes to git just as a snapshot in case the next step messes anything up.
+
+```
+git commit -a -m "After adding amplify deps"
+```
+
+### Sync repo with Amplify project
+
+Using the amplify CLI, pull the project info and ui-components into your repo.
+
+You’ll get the command to do this from your Amplify Apps page that was created earlier.
+![](images/AWS_Amplify_Console%202.png)
+
+If you are using an AWS account via IAM, you should log in to your AWS Console on your default browser. The following command is going to open up your default browser to authenticate to AWS.
+
+If you are not using AWS IAM for auth, but are using the Amplify Console that has its own username/password style login, you don’t need to do anything in advance.
+
+**DON’T TYPE THIS EXACT LINE**
+Use the line from your environment as it has the appID for your application
+The following line is just an example
+
+```bash
+amplify pull --appId dgt42342sdv765la --envName staging
+```
+
+This will eventually open a browser page to authenticate the process. As mentioned earlier, if you are using IAM for access, its easiest if you logged into the AWS Console with your browser first. If you forget to do this, you can still login now, and copy and past the link shown in the output of the CLI command and it will retry authenticating.
+
+If you are using the Amplify Studio username/password, you will get that dialog on the browser and you can fill it in and click Yes
+
+![](images/Amplify_Studio%205.png)
+
+It will then prompt you for a bunch of things to set up your amplify project in this repo
+
+```
+Opening link: https://us-west-2.admin.amplifyapp.com/admin/dgt42342sdv765la/staging/verify/
+✔ Successfully received Amplify Studio tokens.
+Amplify AppID found: dgtkqevv765la. Amplify App name is: rental-cljs
+Backend environment staging found in Amplify Console app: rental-cljs
+? Choose your default editor:
+  Android Studio
+  Xcode (Mac OS only)
+  Atom Editor
+  Sublime Text
+  IntelliJ IDEA
+  Vim (via Terminal, Mac OS only)
+❯ Emacs (via Terminal, Mac OS only)
+(Move up and down to reveal more choices)
+```
+
+Of course the only choice that makes sense is Emacs 🤓
+(Note even though it says via terminal, it works fine with GUI Emacs)
+
+```
+? Choose the type of app that you're building (Use arrow keys)
+  android
+  flutter
+  ios
+❯ javascript
+```
+
+Keep javascript
+
+```
+? What javascript framework are you using (Use arrow keys)
+  angular
+  ember
+  ionic
+❯ react
+  react-native
+  vue
+  none
+```
+
+Keep react
+
+```
+? Source Directory Path:  src/js
+? Distribution Directory Path: public
+? Build Command:  npm run-script build
+? Start Command: npm run-script start
+```
+
+Enter `src/js`for `Source Directory Path`
+Enter `public` for `Distribution Directory Path`
+This build puts everything in `public` but other scaffolding or cljs projects may use some other path. It should be the same as the directory above `js` in the `output-dir` parameter in `shadow-cljs.edn`
+
+The rest of the config inputs and outputs:
+
+```
+✔ Synced UI components.
+GraphQL schema compiled successfully.
+
+Edit your schema at /Users/rberger/work/aws/amplify-rental-reagent-app/amplify/backend/api/rentalcljs/schema.graphql or place .graphql files in a directory at /Users/rberger/work/aws/amplify-rental-reagent-app/amplify/backend/api/rentalcljs/schema
+Successfully generated models. Generated models can be found in /Users/rberger/work/aws/amplify-rental-reagent-app/src/main
+? Do you plan on modifying this backend? (Y/n) Y
+```
+
+Say `Y` for `Do you plan on modifying this backend? `
+
+### Move the `ui-components` jsx files out of `src/js`
+
+Shadow-cljs can’t directly consume JSX files, so we need to use babel to convert them to JS files. To do this we have to take the JSX files out of the CLJS :source-path
+
+```bash
+mkdir src/jsx
+mv src/js/ui-components src/jsx/
+```
+
+You will need to generate the js files with babel. You’ll need to do this every time the `ui-components` are updated via an `amplify pull`
+
+```
+px babel src/jsx --out-dir src/js
+```
+
+You might want to checkpoint your git repo again after this.
+
+You can make sure the basic reagent setup is still working by doing:
+
+```bash
+npm start
+```
+
+And see that the app is running at `http://localhost:3000`
+You will just see `Create Reagent App` on the page as a header.
+
+## Update to support mixing webpack with shadow-cljs
+
+Based on David Vujic’s work [Agile & Coding: Hey Webpack, Hey ClojureScript](https://davidvujic.blogspot.com/2021/08/hey-webpack-hey-clojurescript.html) we’re going to add mechanisms to build the javascript code using webpack and the clojurescript code with shadow-cljs. This is necessary when using more recent versions of the AWS Amplify libraries.
+
+Add the following lines to shadow-cljs.edn between the `:asset-path` and `:modules` stanzas in the `:app` section
+
+```clojure
+   :js-options {:js-provider    :external
+                :external-index "target/index.js"}
+```
+
+### Update `index.html` to load the libs from both shadow and webpack
+
+Edit `public/index.html` to change the line
+
+```html
+<script src="/js/main.js"></script>
+```
+
+To
+
+```html
+<script defer src="/js/libs/bundle.js"></script>
+<script defer src="/js/main.js"></script>
+```
+
+## Update the scaffold code to support Amplify
+
+### Add the dependencies
+
+Edit `src/main/amplify_rental_reagent_app/app/core.cljs`
+Add the aws imports to the require
+
+```clojure
+(ns amplify-rental-reagent-app.app.core
+  (:require [reagent.dom :as rdom]
+            ["/aws-exports" :default ^js aws-exports]
+            ["aws-amplify" :default Amplify]))
+```
+
+Create a file `webpack.config.js` with the content
+
+```javascript
+const path = require("path");
+
+module.exports = {
+  mode: "production",
+  entry: "./target/index.js",
+  output: {
+    path: path.resolve(__dirname, "public/js/libs"),
+    filename: "bundle.js",
+    clean: true,
+  },
+  module: {
+    rules: [
+      {
+        // docs: https://webpack.js.org/configuration/module/#resolvefullyspecified
+        test: /\.m?js/,
+        resolve: {
+          fullySpecified: false,
+        },
+      },
+    ],
+  },
+};
+```
+
+Add the following line to the `”scripts”` section of `package.json`
+
+```json
+    "pack": "webpack --watch"
+```
+
+And the following to the `:devDependencies section (Use the latest versions available)
+
+```json
+    "webpack": "5.65.0",
+    "webpack-cli": "^4.9.1"
+```
+
+Then do
+
+```bash
+npm install
+```
+
+And in another terminal window, also at the top of the repo run:
+
+```
+npm run pack
+```
+
 ---
 
-## Getting Started
+## General instructions from Scaffolding
 
 ### 1. Install Dependencies
 
