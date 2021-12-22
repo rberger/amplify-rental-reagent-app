@@ -23,15 +23,23 @@
     "pack": "webpack --watch"
   },
   "devDependencies": {
+    "@babel/core": "7.16.0",
+    "@babel/plugin-transform-react-jsx": "^7.16.5",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "8.2.3",
+    "babel-plugin-transform-react-jsx": "^6.24.1",
+    "babel-preset-env": "^1.7.0",
+    "process": "^0.11.10",
     "rimraf": "^3.0.2",
     "serve": "^13.0.2",
-    "shadow-cljs": "2.16.9",
-    "webpack": "5.65.0",
-    "webpack-cli": "^4.9.1"
+    "shadow-cljs": "2.16.4",
+    "webpack": "5.64.0",
+    "webpack-cli": "^4.8.0"
   },
   "dependencies": {
     "@aws-amplify/ui-react": "^2.1.5",
-    "aws-amplify": "^4.3.11",
+    "aws-amplify": "^4.3.6",
     "react": "17.0.2",
     "react-dom": "17.0.2"
   }
