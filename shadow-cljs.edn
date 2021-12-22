@@ -15,11 +15,11 @@
   {:target     :browser
    :output-dir "public/js"
    :asset-path "/js"
+   :compiler-options {:output-feature-set :es-next}
    :js-options {:resolve {"http2" false
                           "aws-crt" false}
-                ;; :js-provider    :external
-                ;; :external-index "target/index.js"
-                }
+                :js-provider    :external
+                :external-index "target/index.js"}
    :modules    {:main
                 {:init-fn amplify-rental-reagent-app.app.core/main}}}
 

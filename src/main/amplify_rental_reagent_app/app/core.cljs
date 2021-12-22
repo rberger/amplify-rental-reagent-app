@@ -1,8 +1,8 @@
 (ns amplify-rental-reagent-app.app.core
   (:require [reagent.dom :as rdom]
-            ;; ["/aws-exports" :default ^js aws-exports]
-            ;; ["aws-amplify" :default Amplify]
-            ;; ["@aws-amplify/ui-react" :default AmplifyProvider]
+            ["/aws-exports" :default ^js aws-exports]
+            ["aws-amplify" :default Amplify]
+            ["@aws-amplify/ui-react" :default AmplifyProvider]
             ;; ["../../ui-components" :refer [CardACollection]]
             ))
 
