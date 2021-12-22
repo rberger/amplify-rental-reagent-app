@@ -3,8 +3,7 @@
             ["/aws-exports" :default ^js aws-exports]
             ["aws-amplify" :default Amplify]
             ["@aws-amplify/ui-react" :default AmplifyProvider]
-            ;; ["../../ui-components" :refer [CardACollection]]
-            ))
+            ["/ui-components/CardACollection.js" :default CardACollection]))
 
 (defn app []
   [:h1 "Create Reagent App"]
@@ -16,7 +15,7 @@
   (rdom/render [app] (.getElementById js/document "root")))
 
 (defn ^:export main []
-  ;; (-> Amplify (.configure aws-exports))
+  (-> Amplify (.configure aws-exports))
   (render))
 
 (defn ^:dev/after-load reload! []

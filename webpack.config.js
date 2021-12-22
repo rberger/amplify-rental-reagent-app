@@ -1,13 +1,14 @@
 const path = require("path");
 
 module.exports = {
-  mode: "production",
+  mode: "development",
   entry: "./target/index.js",
   output: {
     path: path.resolve(__dirname, "public/js/libs"),
     filename: "bundle.js",
     clean: true,
   },
+  devtool: "source-map",
   module: {
     rules: [
       {
