@@ -23,7 +23,8 @@ function _extends() {
 
 /* eslint-disable */
 import React from "react";
-import { Rental } from "../models";
+import { Rental } from "../models/index.js";
+// console.log("Rental: ", Rental);
 import {
   getOverrideProps,
   useDataStoreBinding,

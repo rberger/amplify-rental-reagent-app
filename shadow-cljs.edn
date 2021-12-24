@@ -18,6 +18,8 @@
    :compiler-options {:output-feature-set :es-next}
    :js-options {:js-provider    :external
                 :external-index "target/index.js"}
+   ;; :js-options {:resolve {"http2" false
+   ;;                        "aws-crt" false}}
    :modules    {:main
                 {:init-fn amplify-rental-reagent-app.app.core/main}}}
 

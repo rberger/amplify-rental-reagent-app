@@ -1,11 +1,7 @@
 // @ts-check
-import { initSchema } from '@aws-amplify/datastore';
-import { schema } from './schema';
-
-
+import { initSchema } from "@aws-amplify/datastore";
+import { schema } from "./schema";
 
 const { Rental } = initSchema(schema);
-
-export {
-  Rental
-};
+console.log("index.js Rental: ", Rental);
+export { Rental };
