@@ -23,7 +23,7 @@ function _extends() {
 
 /* eslint-disable */
 import React from "react";
-import { Rental } from "../models/index.js";
+import { Rental } from "../models";
 // console.log("Rental: ", Rental);
 import {
   getOverrideProps,

@@ -4,7 +4,7 @@
             ["/aws-exports" :default ^js aws-exports]
             ["aws-amplify" :refer [Amplify] :as amplify]
             ["@aws-amplify/ui-react" :refer [AmplifyProvider]]
-            ["/ui-components/CardACollection.js" :default CardACollection]))
+            ["ui-components/CardACollection.js" :default CardACollection]))
 
 ;; (def functional-compiler (r/create-compiler {:function-components true}))
 ;; (r/set-default-compiler! functional-compiler)

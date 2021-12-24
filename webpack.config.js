@@ -1,4 +1,5 @@
 const path = require("path");
+const webpack = require("webpack");
 
 module.exports = {
   mode: "development",
@@ -16,8 +17,17 @@ module.exports = {
         test: /\.m?js/,
         resolve: {
           fullySpecified: false,
+          alias: {
+            models: "../src/amplify/models/index.js",
+            "ui-components": "../src/amplify/ui-components/",
+          },
         },
       },
     ],
   },
+  plugins: [
+    new webpack.ProvidePlugin({
+      process: "process/browser",
+    }),
+  ],
 };
