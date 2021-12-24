@@ -1,5 +1,7 @@
 # Amplify Rental Reagent App
 
+_NOTE: THIS IS STILL UNDERCONSTRUCTION AND THESE INSTRUCTIONS ARE NOT UP TO DATE_ 12/23/2021
+
 Attempt to convert the AWS Tutorial [Build a Vacation Rental Site with Amplify Studio](https://welearncode.com/studio-vacation-site/) from Javascript to Clojurescript
 
 Uses
@@ -34,7 +36,7 @@ So we need to install the appropriate babel tool
 npm i @babel/core @babel/plugin-transform-react-jsx @babel/preset-env @babel/cli --save-dev
 ```
 
-Create the `.babelrc` file in `src/js/.babelrc` (You will have to create the js directory)
+Create the `.babelrc` file in `src/amplify/.babelrc` (You will have to create the js directory)
 
 ```json
 {
@@ -176,13 +178,13 @@ Keep javascript
 Keep react
 
 ```
-? Source Directory Path:  src/js
+? Source Directory Path:  src/amplify
 ? Distribution Directory Path: public
 ? Build Command:  npm run-script build
 ? Start Command: npm run-script start
 ```
 
-Enter `src/js`for `Source Directory Path`
+Enter `src/amplify`for `Source Directory Path`
 Enter `public` for `Distribution Directory Path`
 This build puts everything in `public` but other scaffolding or cljs projects may use some other path. It should be the same as the directory above `js` in the `output-dir` parameter in `shadow-cljs.edn`
 
@@ -200,6 +202,8 @@ Successfully generated models. Generated models can be found in /Users/rberger/w
 Say `Y` for `Do you plan on modifying this backend? `
 
 ### Move the `ui-components` jsx files out of `src/js`
+
+_NOTE: THIS NEEDS TO BE CHANGED TO USE WEBPACK_
 
 Shadow-cljs can’t directly consume JSX files, so we need to use babel to convert them to JS files. To do this we have to take the JSX files out of the CLJS :source-path
 
