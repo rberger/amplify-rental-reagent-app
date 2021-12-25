@@ -1,5 +1,6 @@
 const path = require("path");
 const webpack = require("webpack");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   mode: "development",
@@ -19,6 +20,15 @@ module.exports = {
           fullySpecified: false,
           alias: {
             models: "../src/amplify/models/index.js",
+          },
+        },
+      },
+      {
+        test: /\.jsx$/,
+        exclude: /node_modules/,
+        use: ["babel-loader"],
+        resolve: {
+          alias: {
             "ui-components": "../src/amplify/ui-components/",
           },
         },
