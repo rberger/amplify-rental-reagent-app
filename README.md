@@ -28,7 +28,7 @@ npm-install
 ### Add webpack and releated dependencies
 
 ```bash
-npm i -D @babel/cli @babel/core @babel/preset-react @babel/preset-env babel-loader css-loader style-loader html-webpack-plugin html-beautifier-webpack-plugin process webpack webpack-cli
+npm i -D @babel/cli @babel/core @babel/preset-react @babel/preset-env babel-loader css-loader style-loader sass-loader html-webpack-plugin html-beautifier-webpack-plugin process webpack webpack-cli
 ```
 
 ### ~~Add babel for converting JSX to JS~~

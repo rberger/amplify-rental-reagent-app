@@ -33,6 +33,7 @@
     "html-webpack-plugin": "^5.5.0",
     "process": "^0.11.10",
     "rimraf": "^3.0.2",
+    "sass-loader": "^12.4.0",
     "serve": "^13.0.2",
     "shadow-cljs": "2.16.9",
     "style-loader": "^3.3.1",
