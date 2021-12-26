@@ -1,14 +1,15 @@
 const path = require("path");
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const HtmlBeautifierPlugin = require("html-beautifier-webpack-plugin");
 
 module.exports = {
   mode: "development",
   entry: "./target/index.js",
   output: {
-    path: path.resolve(__dirname, "public/js/libs"),
-    filename: "bundle.js",
-    clean: true,
+    path: path.resolve(__dirname, "public"),
+    filename: "js/libs/bundle.js",
+    clean: false,
   },
   devtool: "source-map",
   module: {
@@ -38,5 +39,10 @@ module.exports = {
     new webpack.ProvidePlugin({
       process: "process/browser",
     }),
+    new HtmlWebpackPlugin({
+      template: "./public/index.html.tmpl",
+      filename: "index.html",
+    }),
+    new HtmlBeautifierPlugin(),
   ],
 };

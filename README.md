@@ -25,7 +25,15 @@ cd amplify-rental-reagent-app
 npm-install
 ```
 
-### Add babel for converting JSX to JS
+### Add webpack and releated dependencies
+
+```bash
+npm i -D @babel/cli @babel/core @babel/preset-react @babel/preset-env babel-loader css-loader style-loader html-webpack-plugin html-beautifier-webpack-plugin process webpack webpack-cli
+```
+
+### ~~Add babel for converting JSX to JS~~
+
+_NOTE: THIS IS NOT BEING USED NOW. REPLACED BY THE WEBPACK STUFF_
 
 Shadow-cljs can not directly consume JSX files and the Amplify UI components from the Figma plugin are delivered as JSX files.
 This is based on info from [Shadow CLJS User’s Guide - JavaScript Dialects](https://shadow-cljs.github.io/docs/UsersGuide.html#_javascript_dialects)
