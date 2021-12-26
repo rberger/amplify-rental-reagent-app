@@ -20,6 +20,7 @@ module.exports = {
           fullySpecified: false,
           alias: {
             models: "../src/amplify/models/index.js",
+            "ui-components": "../src/amplify/ui-components",
           },
         },
       },
@@ -27,13 +28,11 @@ module.exports = {
         test: /\.jsx$/,
         exclude: /node_modules/,
         use: ["babel-loader"],
-        resolve: {
-          alias: {
-            "ui-components": "../src/amplify/ui-components/",
-          },
-        },
       },
     ],
+  },
+  resolve: {
+    extensions: ["", ".js", ".jsx"],
   },
   plugins: [
     new webpack.ProvidePlugin({
