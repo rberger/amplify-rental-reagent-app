@@ -8,8 +8,8 @@ Uses
 
 - [Create Reagent App](https://github.com/AutoScreencast/create-reagent-app) to create the project scaffold
 - [Shadow-CLJS](http://shadow-cljs.org/) as the build tool / compiler
-
 - [Reagent](https://github.com/reagent-project/reagent) (CLJS wrapper around [React](https://reactjs.org/)) for building your user interface
+- [Amplify Studio](https://aws.amazon.com/amplify/studio/) and all the related [AWS Amplify tooling](https://aws.amazon.com/amplify/)
 
 Follow the instructions from the original article up thru to `Pull to Studio`
 
