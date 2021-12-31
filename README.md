@@ -2,9 +2,9 @@
 
 _NOTE: THIS IS STILL UNDERCONSTRUCTION AND THESE INSTRUCTIONS ARE NOT UP TO DATE_ 12/23/2021
 
-Attempt to convert the AWS Tutorial [Build a Vacation Rental Site with Amplify Studio](https://welearncode.com/studio-vacation-site/) from Javascript to Clojurescript
+Implements the AWS Tutorial [Build a Vacation Rental Site with Amplify Studio](https://welearncode.com/studio-vacation-site/) but instead of being Javascript based, uses Clojurescript for the project implementation. It does incorporate the Javascript output of Amplify Studio but all code to use it is in Clojurescript.
 
-Uses
+## Tooling Used:
 
 - [Create Reagent App](https://github.com/AutoScreencast/create-reagent-app) to create the project scaffold
 - [Shadow-CLJS](http://shadow-cljs.org/) as the build tool / compiler
