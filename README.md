@@ -1,6 +1,8 @@
 # Amplify Rental Reagent App
 
-_NOTE: THIS IS STILL UNDERCONSTRUCTION AND THESE INSTRUCTIONS ARE NOT UP TO DATE_ 12/23/2021
+**NOTE: This had been superceded by https://github.com/rberger/amplifystudio-cljs-tutorial**
+
+_NOTE: \_THIS IS STILL UNDERCONSTRUCTION AND THESE INSTRUCTIONS ARE NOT UP TO DATE_ 12/23/2021\_
 
 Implements the AWS Tutorial [Build a Vacation Rental Site with Amplify Studio](https://welearncode.com/studio-vacation-site/) but instead of being Javascript based, uses Clojurescript for the project implementation. It does incorporate the Javascript output of Amplify Studio but all code to use it is in Clojurescript.
 
